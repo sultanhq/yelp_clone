@@ -10,9 +10,9 @@
     = yield
 
 
-- if @restaurants.any?
-  - @restaurants.each do |restaurant|
-    %h2= restaurant.name
-- else
-  %h1 No restaurants yet!
-  %a(href='restaurants/new') Add a restaurant
+    - if @restaurants.any?
+      - @restaurants.each do |restaurant|
+        %h2= link_to restaurant.name, restaurant_path(restaurant)
+    - else
+      %h1 No restaurants yet!
+      %a(href='restaurants/new') Add a restaurant
