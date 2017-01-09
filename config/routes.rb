@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get 'restaurants' => 'restaurants#index'
   resources :restaurants
 
+  get 'restaurants/new' => 'restaurants#new'
 end
