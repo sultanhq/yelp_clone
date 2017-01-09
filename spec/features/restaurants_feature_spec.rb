@@ -42,4 +42,20 @@ feature 'restaurants' do
     end
   end
 
+  context 'editing restaurants' do
+
+    before{ Restaurant.create name: 'KFC', description: 'Fried chicken that makes you fat'}
+
+    scenario '' do
+      visit '/restaurants'
+      click_link 'Edit KFC'
+      fill_in 'Name', with: 'Kentucky Fried Chicken'
+      fill_in 'Description', with: 'Fried chicken that makes you fat'
+      click_button 'Update Restaurant'
+      expect(page).to have_content 'Kentucky Fried Chicken'
+      expect(page).to have_content 'Fried chicken that makes you fat'
+      expect(current_path).to eq '/restaurants'
+    end
+  end
+
 end
