@@ -4,3 +4,4 @@
   = f.label :description
   = f.text_area :description
   = f.submit
+%h6= link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant), method: :delete
