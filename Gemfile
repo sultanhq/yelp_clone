@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Haml as markup language in views
 gem 'haml'
 gem 'devise'
+gem 'envyable'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
