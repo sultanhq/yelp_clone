@@ -3,6 +3,6 @@
 - if @restaurant.reviews.any?
   %p Reviews:
   - @restaurant.reviews.each do |review|
-    %p= review.thoughts
+    %p= "#{review.rating}: #{review.thoughts}"
 - else
   %p No reviews yet
