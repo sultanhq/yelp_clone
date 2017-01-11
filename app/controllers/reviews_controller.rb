@@ -8,8 +8,11 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.find(params[:restaurant_id])
-    @restaurant.reviews.create(review_params)
+    user = current_user
+    @restaurant = user.restaurants.find(params[:restaurant_id])
+    require'pry';binding.pry
+    @restaurant.buildReview(review_params,user)
+    # @restaurant.reviews.create(review_params)
     redirect_to "/restaurants/#{@restaurant.id}"
   end
 
