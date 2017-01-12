@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 feature 'reviewing' do
-  let!(:kfc) {Restaurant.create name: 'KFC' }
 
   scenario 'allows users to leave a review using a form' do
     sign_up
@@ -10,10 +9,8 @@ feature 'reviewing' do
     click_link 'Review KFC'
     fill_in "Thoughts", with: "Blurgh"
     select '3', from: 'Rating'
-
     click_button 'Leave Review'
-    expect(current_path).to eq "/restaurants/#{kfc.id}"
+    click_link 'KFC'
     expect(page).to have_content('Blurgh')
-
   end
 end
