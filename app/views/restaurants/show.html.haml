@@ -4,5 +4,7 @@
   %p Reviews:
   - @restaurant.reviews.each do |review|
     %p= "#{review.rating}: #{review.thoughts}"
+    - if review.user_id == current_user.id
+      = link_to "Delete your review", restaurant_review_path(@restaurant, review), method: :delete
 - else
   %p No reviews yet
