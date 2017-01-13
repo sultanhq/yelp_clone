@@ -13,7 +13,7 @@ feature 'restaurants' do
 
   context 'restaurants have been added' do
     scenario 'display restaurants' do
-			add_a_restaurant
+      add_a_restaurant
       visit '/restaurants'
       expect(page).to have_content('KFC')
       expect(page).not_to have_content('No restaurants yet')
@@ -57,7 +57,7 @@ feature 'restaurants' do
     before { Restaurant.create name: 'KFC', description: 'Deep fried goodness', id: 1 }
 
     scenario 'let a user edit a restaurant' do
-    	add_a_restaurant
+      add_a_restaurant
       click_link 'Edit KFC'
       fill_in 'Name', with: 'Kentucky Fried Chicken'
       fill_in 'Description', with: 'Deep fried goodness'
@@ -72,11 +72,22 @@ feature 'restaurants' do
   context 'deleting restaurants' do
 
     scenario 'removes a restaurant when a user clicks a delete link' do
-			add_a_restaurant
+      add_a_restaurant
       visit '/restaurants'
+      click_link 'KFC'
       click_link 'Delete KFC'
       expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
+
+    scenario 'only the restaurant owner can delete a restaurant' do
+      add_a_restaurant
+      click_link 'Sign out'
+      sign_up_2
+      click_link 'KFC'
+      expect(page).not_to have_content 'Delete KFC'
+    end
+
   end
+
 end

@@ -8,3 +8,5 @@
       = link_to "Delete your review", restaurant_review_path(@restaurant, review), method: :delete
 - else
   %p No reviews yet
+- if @restaurant.user_id == current_user.id
+  = link_to "Delete #{@restaurant.name}", restaurant_path(@restaurant), method: :delete
