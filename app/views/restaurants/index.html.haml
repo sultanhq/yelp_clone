@@ -1,10 +1,7 @@
 - if @restaurants.any?
 	- @restaurants.each do |restaurant|
 		%h2= link_to restaurant.name, restaurant_path(restaurant)
-		- if restaurant.reviews.any?
-			="Average Rating : #{restaurant.average_rating}"
-		- else
-			No reviews yet
+		="Average Rating : #{restaurant.average_rating}"
 		%br
 		= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant)
 		- if user_signed_in?
